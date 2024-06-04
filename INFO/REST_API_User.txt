@@ -1,0 +1,100 @@
+
+REST API User
+---------------------
+
+
+Отримання всіх даних
+GET
+http://localhost:8080/api/v1/customers
+
+
+Створення даних
+POST
+http://localhost:8080/api/v1/customers
+
+Виконуємо окремі запити.
+Налаштування в Postman: Body, raw, JSON.
+
+
+{
+    "firstName": "Tom",
+    "lastName": "Forest",
+    "email": "tom@mail.com"
+}
+
+{
+    "firstName": "Bob",
+    "lastName": "Green",
+    "email": "bob@mail.com"
+}
+
+{
+    "firstName": "Alice",
+    "lastName": "Terra",
+    "email": "alice@mail.com"
+}
+
+{
+    "firstName": "David",
+    "lastName": "Bright",
+    "email": "david@mail.com"
+}
+
+{
+    "firstName": "Lucy",
+    "lastName": "Moon",
+    "email": "lucy@mail.com"
+}
+
+
+Отримання даних за id
+GET
+http://localhost:8080/api/v1/customers/2
+If id does not exist
+http://localhost:8080/api/v1/customers/17
+
+
+Отримання останього запису в таблиці
+GET
+http://localhost:8080/api/v1/customers/last-entity
+
+
+Оновлення даних за id
+PUT
+http://localhost:8080/api/v1/customers/3
+If id does not exist
+http://localhost:8080/api/v1/customers/17
+
+Налаштування в Postman: Body, raw, JSON.
+
+{
+    "firstName": "Alice",
+    "lastName": "Sunny",
+    "email": "sunny@mail.com"
+}
+
+Оновлення даних (даних недостатньо):
+
+PUT
+http://localhost:8080/api/v1/customers/2
+
+{
+    "email": "superbob@mail.com"
+}
+
+PUT
+http://localhost:8080/api/v1/customers/2
+
+{
+    "firstName": "Bobby",
+    "email": "superbob@mail.com"
+}
+
+
+Видалення даних за id
+DELETE
+http://localhost:8080/api/v1/customers/4
+If id does not exist
+http://localhost:8080/api/v1/customers/17
+
+
