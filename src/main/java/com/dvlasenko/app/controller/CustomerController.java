@@ -13,8 +13,8 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping("customers")
-    public String createUser(@RequestBody Customer user) {
-        return customerService.create(user);
+    public String createCustomer(@RequestBody Customer customer) {
+        return customerService.create(customer);
     }
 
     @GetMapping("customers/last-entity")
@@ -23,22 +23,22 @@ public class CustomerController {
     }
 
     @GetMapping("customers")
-    public String fetchAllUsers() {
+    public String fetchAllCustomers() {
         return customerService.fetchAll();
     }
 
     @GetMapping("customers/{id}")
-    public String fetchUserById(@PathVariable("id") Long id) {
+    public String fetchCustomerById(@PathVariable("id") Long id) {
         return customerService.fetchById(id);
     }
 
     @PutMapping("customers/{id}")
-    public String updateUser(@PathVariable("id") Long id, @RequestBody Customer user) {
-        return customerService.update(id, user);
+    public String updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
+        return customerService.update(id, customer);
     }
 
     @DeleteMapping("customers/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteCustomer(@PathVariable("id") Long id) {
         return customerService.delete(id);
     }
 }

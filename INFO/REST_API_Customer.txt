@@ -1,5 +1,5 @@
 
-REST API User
+REST API Customer
 ---------------------
 
 
@@ -17,41 +17,16 @@ http://localhost:8080/api/v1/customers
 
 
 {
-    "firstName": "Tom",
-    "lastName": "Forest",
-    "email": "tom@mail.com"
-}
-
-{
-    "firstName": "Bob",
-    "lastName": "Green",
-    "email": "bob@mail.com"
-}
-
-{
-    "firstName": "Alice",
-    "lastName": "Terra",
-    "email": "alice@mail.com"
-}
-
-{
-    "firstName": "David",
-    "lastName": "Bright",
-    "email": "david@mail.com"
-}
-
-{
-    "firstName": "Lucy",
-    "lastName": "Moon",
-    "email": "lucy@mail.com"
+    "firstName": "Dima",
+    "lastName": "Vlasenko",
+    "phone": "+380667903955",
+    "address": "Dnipro"
 }
 
 
 Отримання даних за id
 GET
-http://localhost:8080/api/v1/customers/2
-If id does not exist
-http://localhost:8080/api/v1/customers/17
+http://localhost:8080/api/v1/customers/1
 
 
 Отримання останього запису в таблиці
@@ -68,9 +43,10 @@ http://localhost:8080/api/v1/customers/17
 Налаштування в Postman: Body, raw, JSON.
 
 {
-    "firstName": "Alice",
-    "lastName": "Sunny",
-    "email": "sunny@mail.com"
+    "firstName": "Dima",
+    "lastName": "Vlasenko",
+    "phone": "+380667903955",
+    "address": "Dnipro"
 }
 
 Оновлення даних (даних недостатньо):
@@ -79,22 +55,20 @@ PUT
 http://localhost:8080/api/v1/customers/2
 
 {
-    "email": "superbob@mail.com"
+    "lastName": "Vlasenko",
 }
 
 PUT
 http://localhost:8080/api/v1/customers/2
 
 {
-    "firstName": "Bobby",
-    "email": "superbob@mail.com"
+    "lastName": "Vlasenko",
+    "phone": "+380667903955",
 }
 
 
 Видалення даних за id
 DELETE
 http://localhost:8080/api/v1/customers/4
-If id does not exist
-http://localhost:8080/api/v1/customers/17
 
 

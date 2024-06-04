@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service("userService")
+@Service("customerService")
 public class CustomerService {
 
     @Autowired
     CustomerRepository repository;
 
-    public String create(Customer user) {
+    public String create(Customer customer) {
         Optional<Customer> optional;
-        if (repository.create(user)) {
+        if (repository.create(customer)) {
             optional = repository.getLastEntity();
             if (optional.isPresent()) {
-                Customer userCreated = optional.get();
+                Customer customerCreated = optional.get();
                 return new ResponseUtil<ResponseData<Customer>>()
                         .getResponse(new ResponseData<>(HttpStatus.CREATED.toString(),
-                                true, userCreated));
+                                true, customerCreated));
             } else return new ResponseUtil<ResponseInfo>()
                     .getResponse(new ResponseInfo(HttpStatus.NOT_FOUND.toString(),
                             false, ResponseMessage.SMTH_WRONG.getResponseMsg()));
@@ -51,20 +51,20 @@ public class CustomerService {
     public String fetchById(Long id) {
         Optional<Customer> optional = repository.fetchById(id);
         if (optional.isPresent()) {
-            Customer user = optional.get();
+            Customer customer = optional.get();
             return new ResponseUtil<ResponseData<Customer>>()
                     .getResponse(new ResponseData<>(HttpStatus.OK.toString(),
-                            true, user));
+                            true, customer));
         } else return new ResponseUtil<ResponseInfo>()
                 .getResponse(new ResponseInfo(HttpStatus.NOT_FOUND.toString(),
                         false, ResponseMessage.SMTH_WRONG.getResponseMsg()));
     }
 
-    public String update(Long id, Customer user) {
+    public String update(Long id, Customer customer) {
         Optional<Customer> optional = repository.fetchById(id);
         if (optional.isPresent()) {
             Map<String, String> errors =
-                    new CustomerValidator().validateData(user);
+                    new CustomerValidator().validateData(customer);
             if (!errors.isEmpty()) {
                 try {
                     throw new CustomerException("Check inputs",
@@ -75,13 +75,13 @@ public class CustomerService {
                                     false, e.getErrors(errors)));
                 }
             }
-            if (repository.update(id, user)) {
+            if (repository.update(id, customer)) {
                 Optional<Customer> optional1 = repository.fetchById(id);
                 if (optional1.isPresent()) {
-                    Customer userUpdated = optional1.get();
+                    Customer customerUpdated = optional1.get();
                     return new ResponseUtil<ResponseData<Customer>>()
                             .getResponse(new ResponseData<>(HttpStatus.OK.toString(),
-                                    true, userUpdated));
+                                    true, customerUpdated));
                 } else return new ResponseUtil<ResponseInfo>()
                         .getResponse(new ResponseInfo(HttpStatus.NOT_FOUND.toString(),
                                 false, ResponseMessage.SMTH_WRONG.getResponseMsg()));
@@ -111,10 +111,10 @@ public class CustomerService {
     public String getLastEntity() {
         Optional<Customer> optional = repository.getLastEntity();
         if (optional.isPresent()) {
-            Customer userCreated = optional.get();
+            Customer customerCreated = optional.get();
             return new ResponseUtil<ResponseData<Customer>>()
                     .getResponse(new ResponseData<>(HttpStatus.OK.toString(),
-                            true, userCreated));
+                            true, customerCreated));
         } else return new ResponseUtil<ResponseInfo>()
                 .getResponse(new ResponseInfo(HttpStatus.NOT_FOUND.toString(),
                         false, ResponseMessage.SMTH_WRONG.getResponseMsg()));
